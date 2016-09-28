@@ -18,7 +18,7 @@
 		3CFC6F3D1D98719100B4EBB5 /* pokeData.json in Resources */ = {isa = PBXBuildFile; fileRef = 3CFC6F3C1D98719100B4EBB5 /* pokeData.json */; };
 		3CFC6F3F1D9871F100B4EBB5 /* Pokemon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFC6F3E1D9871F100B4EBB5 /* Pokemon.swift */; };
 		3CFC6F411D9871FC00B4EBB5 /* PokemonGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFC6F401D9871FC00B4EBB5 /* PokemonGenerator.swift */; };
-		B62D69571D9C573F0054FF8E /* Pokemon GB.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B62D69561D9C573F0054FF8E /* Pokemon GB.ttf */; };
+		B62D695B1D9C5D320054FF8E /* Pokemon GB.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B62D695A1D9C5D320054FF8E /* Pokemon GB.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,7 +56,7 @@
 		3CFC6F3C1D98719100B4EBB5 /* pokeData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = pokeData.json; sourceTree = "<group>"; };
 		3CFC6F3E1D9871F100B4EBB5 /* Pokemon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pokemon.swift; sourceTree = "<group>"; };
 		3CFC6F401D9871FC00B4EBB5 /* PokemonGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PokemonGenerator.swift; sourceTree = "<group>"; };
-		B62D69561D9C573F0054FF8E /* Pokemon GB.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Pokemon GB.ttf"; path = "../../Pokemon GB.ttf"; sourceTree = "<group>"; };
+		B62D695A1D9C5D320054FF8E /* Pokemon GB.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pokemon GB.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,7 +87,7 @@
 		3CFC6F021D98716000B4EBB5 = {
 			isa = PBXGroup;
 			children = (
-				B62D69561D9C573F0054FF8E /* Pokemon GB.ttf */,
+				B62D695A1D9C5D320054FF8E /* Pokemon GB.ttf */,
 				3CFC6F0D1D98716000B4EBB5 /* Pokedex */,
 				3CFC6F221D98716000B4EBB5 /* PokedexTests */,
 				3CFC6F2D1D98716000B4EBB5 /* PokedexUITests */,
@@ -249,7 +249,7 @@
 			files = (
 				3CFC6F191D98716000B4EBB5 /* LaunchScreen.storyboard in Resources */,
 				3CFC6F161D98716000B4EBB5 /* Assets.xcassets in Resources */,
-				B62D69571D9C573F0054FF8E /* Pokemon GB.ttf in Resources */,
+				B62D695B1D9C5D320054FF8E /* Pokemon GB.ttf in Resources */,
 				3CFC6F3D1D98719100B4EBB5 /* pokeData.json in Resources */,
 				3CFC6F141D98716000B4EBB5 /* Main.storyboard in Resources */,
 			);
