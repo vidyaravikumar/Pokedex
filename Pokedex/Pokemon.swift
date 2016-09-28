@@ -15,10 +15,15 @@ class Pokemon {
             Bug, Grass, Dark, Ground, Dragon, Ice, Electric, Normal, Fairy,
             Poison, Fighting, Psychic, Fire, Rock, Flying, Steel, Ghost, Water
     */
-    
+
     /* Note 2:
        The image for each Pokemon is not provided, but a URL is. You should look up how to get an image from it's URL.
-    */
+        if let url = NSURL(string: "http://etc...") {
+            if let data = NSData(contentsOfURL: url) {
+                imageURL.image = UIImage(data: data)
+            }
+        }
+     */
     
     /* Note 3:
        You can access the properties of Pokemon using dot notation (e.g. pokemon.name, pokemon.number, etc.)
