@@ -9,10 +9,17 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
+    
+    func setUI() {
+        navigationController?.navigationBar.topItem?.title = "POKEMON"
+        navigationController?.navigationBar.titleTextAttributes = 
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        setUI()
     }
 
     override func didReceiveMemoryWarning() {
