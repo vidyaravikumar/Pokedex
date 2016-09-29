@@ -19,6 +19,7 @@
 		3CFC6F3F1D9871F100B4EBB5 /* Pokemon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFC6F3E1D9871F100B4EBB5 /* Pokemon.swift */; };
 		3CFC6F411D9871FC00B4EBB5 /* PokemonGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFC6F401D9871FC00B4EBB5 /* PokemonGenerator.swift */; };
 		B62D695B1D9C5D320054FF8E /* Pokemon GB.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B62D695A1D9C5D320054FF8E /* Pokemon GB.ttf */; };
+		B62D695D1D9CE8D50054FF8E /* pokemon_pixel_font.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B62D695C1D9CE8D50054FF8E /* pokemon_pixel_font.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		3CFC6F3E1D9871F100B4EBB5 /* Pokemon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pokemon.swift; sourceTree = "<group>"; };
 		3CFC6F401D9871FC00B4EBB5 /* PokemonGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PokemonGenerator.swift; sourceTree = "<group>"; };
 		B62D695A1D9C5D320054FF8E /* Pokemon GB.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pokemon GB.ttf"; sourceTree = "<group>"; };
+		B62D695C1D9CE8D50054FF8E /* pokemon_pixel_font.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = pokemon_pixel_font.ttf; path = ../../../Downloads/Pokemon_Pixel_Font/pokemon_pixel_font.ttf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				B62D695A1D9C5D320054FF8E /* Pokemon GB.ttf */,
+				B62D695C1D9CE8D50054FF8E /* pokemon_pixel_font.ttf */,
 				3CFC6F0D1D98716000B4EBB5 /* Pokedex */,
 				3CFC6F221D98716000B4EBB5 /* PokedexTests */,
 				3CFC6F2D1D98716000B4EBB5 /* PokedexUITests */,
@@ -247,6 +250,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B62D695D1D9CE8D50054FF8E /* pokemon_pixel_font.ttf in Resources */,
 				3CFC6F191D98716000B4EBB5 /* LaunchScreen.storyboard in Resources */,
 				3CFC6F161D98716000B4EBB5 /* Assets.xcassets in Resources */,
 				B62D695B1D9C5D320054FF8E /* Pokemon GB.ttf in Resources */,

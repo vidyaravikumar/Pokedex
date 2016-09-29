@@ -12,8 +12,7 @@ class ViewController: UIViewController {
     
     
     func setUI() {
-        navigationController?.navigationBar.topItem?.title = "POKEMON"
-        navigationController?.navigationBar.titleTextAttributes = 
+        navigationController?.navigationBar.topItem?.title = "Pokemon"
     }
     
     
