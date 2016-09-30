@@ -17,12 +17,15 @@ class CollectionViewController: UIViewController, UITableViewDelegate, UITableVi
     var segmentedView : UISegmentedControl!
     var tableView : UITableView!
     var selectedPokemon : Pokemon!
+    var toFavesButton : UIButton!
+    var defaults = UserDefaults.standard
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        // Do any avartional setup after loading the view.
         setupCollectionView()
         setupSegmentedControl()
+        setupFavoritesButton()
     }
 
     override func didReceiveMemoryWarning() {
@@ -34,7 +37,7 @@ class CollectionViewController: UIViewController, UITableViewDelegate, UITableVi
         let items = ["Grid", "Table"]
         segmentedView = UISegmentedControl(items: items)
         segmentedView.selectedSegmentIndex = 0
-        segmentedView.frame = CGRect(x: 0, y: 64, width: view.frame.width, height: 28)
+        segmentedView.frame = CGRect(x: 0, y: 94, width: view.frame.width, height: 30)
         segmentedView.layer.cornerRadius = 3
         segmentedView.backgroundColor = UIColor.white
         segmentedView.tintColor = UIColor.black
@@ -42,11 +45,20 @@ class CollectionViewController: UIViewController, UITableViewDelegate, UITableVi
         view.addSubview(segmentedView)
     }
     
+    func setupFavoritesButton() {
+        toFavesButton = UIButton(frame: CGRect(x: 0, y: 64, width: view.frame.width, height: 30))
+        toFavesButton.layer.cornerRadius = 3
+        toFavesButton.setTitle("Favorites", for: .normal)
+        toFavesButton.backgroundColor = UIColor.red
+        toFavesButton.addTarget(self, action: #selector(viewFavoritesPage), for: .touchUpInside)
+        view.addSubview(toFavesButton)
+    }
+    
     func setupCollectionView() {
         let layout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = 0
         layout.minimumInteritemSpacing = 0
-        collectionView = UICollectionView(frame: CGRect(x: 0, y: 92, width: self.view.frame.width, height: self.view.frame.height - 28) , collectionViewLayout: layout)
+        collectionView = UICollectionView(frame: CGRect(x: 0, y: 124, width: self.view.frame.width, height: self.view.frame.height - 28) , collectionViewLayout: layout)
         collectionView.register(PokemonCollectionViewCell.self, forCellWithReuseIdentifier: "pokeCell")
         collectionView.backgroundColor = UIColor.white
         collectionView.delegate = self
@@ -55,7 +67,7 @@ class CollectionViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func setupTableView() {
-        tableView = UITableView(frame: CGRect(x: 0, y: 92, width: view.frame.width, height: view.frame.height - 28))
+        tableView = UITableView(frame: CGRect(x: 0, y: 124, width: view.frame.width, height: view.frame.height - 28))
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(PokemonTableViewCell.self, forCellReuseIdentifier: "pokeTableViewCell")
@@ -88,17 +100,32 @@ class CollectionViewController: UIViewController, UITableViewDelegate, UITableVi
         }
         if (sender.selectedSegmentIndex == 0) {
             view.addSubview(segmentedView)
+            setupFavoritesButton()
             setupCollectionView()
         } else {
             view.addSubview(segmentedView)
+            setupFavoritesButton()
             setupTableView()
         }
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let next = segue.destination as! PokemonDetailsViewController
-        next.pokemon = selectedPokemon
+    func viewFavoritesPage() {
+        performSegue(withIdentifier: "toFavorites", sender: self)
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toDetails" {
+            let next = segue.destination as! PokemonDetailsViewController
+            next.pokemon = selectedPokemon
+            next.favorites = defaults.object(forKey: "p") as! [Pokemon]!
+            next.defaults = defaults
+        } else {
+            let next = segue.destination as! FavoritesViewController
+            
+        }
+    }
+    
+    
     /*
     // MARK: - Navigation
 
@@ -144,6 +171,11 @@ extension CollectionViewController: UICollectionViewDelegate, UICollectionViewDa
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        selectedPokemon = searchedPokemon[indexPath.row]
+        performSegue(withIdentifier: "toDetails", sender: self)
+    }
+    
+    @objc(tableView:didSelectRowAtIndexPath:) func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedPokemon = searchedPokemon[indexPath.row]
         performSegue(withIdentifier: "toDetails", sender: self)
     }

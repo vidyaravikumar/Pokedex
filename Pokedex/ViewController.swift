@@ -46,7 +46,7 @@ class ViewController: UIViewController {
                 pokemon = pokemon + [poke]
             }
         }
-        
+        print("done")
         super.viewDidLoad()
         setUI()
         setupCollectionView()

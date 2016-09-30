@@ -23,8 +23,10 @@ class PokemonDetailsViewController: UIViewController {
     var total : UILabel!
     var types : UILabel!
     var image : UIImageView!
-    var favorites : [Pokemon]!
+    var favorites : [Pokemon]! = []
     var pokeball : UIButton!
+    var searchWebButton : UIButton!
+    var defaults = UserDefaults.standard
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -88,17 +90,35 @@ class PokemonDetailsViewController: UIViewController {
         types.textAlignment = .center
         view.addSubview(types)
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "bwPokeBall"), style: .plain, target: self, action: #selector(addToOrDeleteFromFavorites))
+        pokeball = UIButton(frame: CGRect(x: view.frame.width * 0.9, y: 70, width: view.frame.width * 0.1, height: view.frame.width * 0.1))
+        pokeball.setImage(#imageLiteral(resourceName: "bwPokeBall"), for: .normal)
+        pokeball.addTarget(self, action: #selector(addToOrDeleteFromFavorites), for: .touchUpInside)
+        view.addSubview(pokeball)
+        
+        searchWebButton = UIButton(frame: CGRect(x: view.frame.width * 0.8, y: view.frame.height * 0.9 - 5, width: view.frame.width * 0.15, height: view.frame.height * 0.075))
+        searchWebButton.setImage(#imageLiteral(resourceName: "searchWebButtonImage"), for: .normal)
+        searchWebButton.addTarget(self, action: #selector(search), for: .touchUpInside)
+        view.addSubview(searchWebButton)
         
         // Do any additional setup after loading the view.
     }
 
+    func search() {
+        performSegue(withIdentifier: "toWeb", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let next = segue.destination as! WebSearchViewController
+        next.poke = pokemon
+    }
+    
     func addToOrDeleteFromFavorites() {
-        if navigationItem.rightBarButtonItem?.image == #imageLiteral(resourceName: "bwPokeBall") {
-            navigationItem.rightBarButtonItem?.image = #imageLiteral(resourceName: "colorPokeBall")
-            favorites.append(pokemon)
+        if pokeball.imageView?.image == #imageLiteral(resourceName: "bwPokeBall") {
+            pokeball.setImage(#imageLiteral(resourceName: "colorPokeBall"), for: .normal)
+            defaults.set(pokemon, forKey: "p")
         } else {
-            navigationItem.rightBarButtonItem?.image = #imageLiteral(resourceName: "bwPokeBall")
+            pokeball.setImage(#imageLiteral(resourceName: "bwPokeBall"), for: .normal)
+            //need to delete favorite
         }
     }
     
@@ -119,18 +139,3 @@ class PokemonDetailsViewController: UIViewController {
     */
 
 }
-
-/*
- let name: String!
- let number: Int!
- let attack: Int!
- let defense: Int!
- let health: Int!
- let specialAttack: Int!
- let specialDefense: Int!
- let species: String!
- let speed: Int!
- let total: Int!
- let types: [String]
- let imageUrl: String!
-*/
