@@ -10,7 +10,8 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    let pokemon = PokemonGenerator.getPokemonArray()
+    let pokeGen = PokemonGenerator.getPokemonArray()
+    var pokemon : [Pokemon]! = []
     var nameButton : UIButton!
     var numButton : UIButton!
     var attackButton : UIButton!
@@ -36,6 +37,16 @@ class ViewController: UIViewController {
     }
     
     override func viewDidLoad() {
+        for poke in pokeGen {
+            if let httpUrl = poke.imageUrl,
+                let url = NSURL(string: httpUrl),
+                let data = NSData(contentsOf: url as URL),
+                let _ = UIImage(data: data as Data)
+            {
+                pokemon = pokemon + [poke]
+            }
+        }
+        
         super.viewDidLoad()
         setUI()
         setupCollectionView()
@@ -180,7 +191,7 @@ class ViewController: UIViewController {
         healthButton.backgroundColor = UIColor.black
         defenseButton.backgroundColor = UIColor.black
         randomButton.backgroundColor = UIColor.black
-        performSegue(withIdentifier: "toPokemonDetails", sender: self)
+        performSegue(withIdentifier: "toCollection", sender: self)
     }
     
     func buttonPressed(b : UIButton) {
@@ -245,7 +256,7 @@ class ViewController: UIViewController {
         healthButton.backgroundColor = UIColor.black
         defenseButton.backgroundColor = UIColor.black
         randomButton.backgroundColor = UIColor.black
-        performSegue(withIdentifier: "toPokemonDetails", sender: self)
+        performSegue(withIdentifier: "toCollection", sender: self)
     }
     
     func typesHooHah() {
@@ -264,7 +275,7 @@ class ViewController: UIViewController {
         } else {
             noPokemonToBeSearched = false
         }
-        performSegue(withIdentifier: "toPokemonDetails", sender: self)
+        performSegue(withIdentifier: "toCollection", sender: self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

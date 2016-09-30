@@ -16,6 +16,7 @@ class CollectionViewController: UIViewController, UITableViewDelegate, UITableVi
     var collectionView: UICollectionView!
     var segmentedView : UISegmentedControl!
     var tableView : UITableView!
+    var selectedPokemon : Pokemon!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,7 +46,7 @@ class CollectionViewController: UIViewController, UITableViewDelegate, UITableVi
         let layout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = 0
         layout.minimumInteritemSpacing = 0
-        collectionView = UICollectionView(frame: CGRect(x: 0, y: 28, width: self.view.frame.width, height: self.view.frame.height - 28) , collectionViewLayout: layout)
+        collectionView = UICollectionView(frame: CGRect(x: 0, y: 92, width: self.view.frame.width, height: self.view.frame.height - 28) , collectionViewLayout: layout)
         collectionView.register(PokemonCollectionViewCell.self, forCellWithReuseIdentifier: "pokeCell")
         collectionView.backgroundColor = UIColor.white
         collectionView.delegate = self
@@ -86,6 +87,7 @@ class CollectionViewController: UIViewController, UITableViewDelegate, UITableVi
             subview.removeFromSuperview()
         }
         if (sender.selectedSegmentIndex == 0) {
+            view.addSubview(segmentedView)
             setupCollectionView()
         } else {
             view.addSubview(segmentedView)
@@ -93,8 +95,10 @@ class CollectionViewController: UIViewController, UITableViewDelegate, UITableVi
         }
     }
     
-    
-    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let next = segue.destination as! PokemonDetailsViewController
+        next.pokemon = selectedPokemon
+    }
     /*
     // MARK: - Navigation
 
@@ -139,5 +143,9 @@ extension CollectionViewController: UICollectionViewDelegate, UICollectionViewDa
         return CGSize(width: (view.frame.width / 3), height: view.frame.height * 0.25)
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        selectedPokemon = searchedPokemon[indexPath.row]
+        performSegue(withIdentifier: "toDetails", sender: self)
+    }
 }
 
