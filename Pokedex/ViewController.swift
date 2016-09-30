@@ -37,6 +37,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
+        setupCollectionView()
+        view.backgroundColor = UIColor(red: 222/255, green: 222/255, blue: 222/255, alpha: 1)
 
         selectCategoryLabel = UILabel(frame: CGRect(x: 0, y: 80, width: view.frame.width, height: view.frame.height * 0.05))
         selectCategoryLabel.text = "Search by:"
@@ -111,7 +113,6 @@ class ViewController: UIViewController {
         searchByCategoriesButton.addTarget(self, action: #selector(categoriesHooHah), for: .touchUpInside)
         view.addSubview(searchByCategoriesButton)
         
-        setupCollectionView()
         
         pressed = UIButton()
     }
@@ -249,10 +250,11 @@ class ViewController: UIViewController {
         let layout = UICollectionViewFlowLayout()
         layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = 0
-        collectionView = UICollectionView(frame: CGRect(x: 20, y: 180 + (view.frame.height * 0.25), width: view.frame.width - 40, height: view.frame.height * 0.05), collectionViewLayout: layout)
+        collectionView = UICollectionView(frame: CGRect(x: 20, y: 200 + (view.frame.height * 0.25), width: view.frame.width - 40, height: view.frame.height * 0.4), collectionViewLayout: layout)
         collectionView.register(PokemonTypeCollectionViewCell.self, forCellWithReuseIdentifier: "typeCell")
         collectionView.delegate = self
         collectionView.dataSource = self
+        collectionView.backgroundColor = UIColor(red: 222/255, green: 222/255, blue: 222/255, alpha: 1)
         view.addSubview(collectionView)
     }
     
@@ -262,7 +264,7 @@ class ViewController: UIViewController {
     }
 }
 
-extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
@@ -276,17 +278,22 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
         for subview in cell.contentView.subviews {
             subview.removeFromSuperview()
         }
-        awakeFromNib()
+        cell.awakeFromNib()
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         let typeCell = cell as! PokemonTypeCollectionViewCell
-        if UIImage(named: String(pokemonTypeNames[indexPath.row])) != nil {
-            typeCell.typeImage.image = UIImage(named: String(pokemonTypeNames[indexPath.row])!)!
-        }
+        typeCell.typeImage.image = UIImage(named: String(pokemonTypeNames[indexPath.row])!)!
         typeCell.type.text = pokemonTypeNames[indexPath.row]
     }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: (view.frame.width / 6), height: view.frame.height * 0.15)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print(indexPath.row)
+    }
 }
-
 
