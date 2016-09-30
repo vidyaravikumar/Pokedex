@@ -20,6 +20,9 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="sn6-lZ-vWd"/>
+                    <connections>
+                        <segue destination="lFg-fj-THw" kind="show" identifier="toPokemonDetails" id="2aT-DT-sIi"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -42,6 +45,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zOq-fF-A8K" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-258.39999999999998" y="-644.52773613193403"/>
+        </scene>
+        <!--Pokemon Details View Controller-->
+        <scene sceneID="ezA-A6-DfL">
+            <objects>
+                <viewController id="lFg-fj-THw" customClass="PokemonDetailsViewController" customModule="Pokedex" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="hlP-fM-Tc1"/>
+                        <viewControllerLayoutGuide type="bottom" id="589-gI-nCX"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="41Y-wy-P3x">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EaO-n8-aDv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="978" y="-767"/>
         </scene>
     </scenes>
 </document>

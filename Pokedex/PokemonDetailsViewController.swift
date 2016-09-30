@@ -9,10 +9,13 @@
 import UIKit
 
 class PokemonDetailsViewController: UIViewController {
-
+    
+    var pokemon : Pokemon!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        navigationController?.navigationBar.topItem?.title = pokemon.name
+        navigationController?.navigationBar.topItem?.prompt = String(pokemon.number)
         // Do any additional setup after loading the view.
     }
 

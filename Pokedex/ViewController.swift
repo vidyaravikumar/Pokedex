@@ -10,6 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    var button : UIButton!
     
     func setUI() {
         navigationController?.navigationBar.topItem?.title = "Pokemon"
@@ -20,7 +21,9 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         setUI()
     }
-
+    
+//    @IBAction 
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
