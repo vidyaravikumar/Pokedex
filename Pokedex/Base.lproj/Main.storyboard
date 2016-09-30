@@ -46,10 +46,10 @@
             </objects>
             <point key="canvasLocation" x="-258.39999999999998" y="-644.52773613193403"/>
         </scene>
-        <!--Pokemon Details View Controller-->
+        <!--Collection View Controller-->
         <scene sceneID="ezA-A6-DfL">
             <objects>
-                <viewController id="lFg-fj-THw" customClass="PokemonDetailsViewController" customModule="Pokedex" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="lFg-fj-THw" customClass="CollectionViewController" customModule="Pokedex" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="hlP-fM-Tc1"/>
                         <viewControllerLayoutGuide type="bottom" id="589-gI-nCX"/>
