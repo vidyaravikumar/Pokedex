@@ -27,6 +27,7 @@ class ViewController: UIViewController {
     var searchedPokemon : [Pokemon] = []
     var noPokemonToBeSearched : Bool!
     let pokemonTypeNames : [String]! = ["Bug", "Dark", "Dragon", "Electric", "Fairy", "Fighting", "Fire", "Flying", "Ghost", "Grass", "Ground", "Ice", "Normal", "Poison", "Psychic", "Rock", "Steel", "Water"]
+    var selectedTypesNames : [String]! = []
     //let pokemonTypeImages = [UIImage(named: "Bug"), UIImage(named: "Dark"), UIImage(named: "Dragon"), UIImage(named: "Electric"), UIImage(named: "Fairy"), UIImage(named: "Fighting"), UIImage(named: "Fire"), UIImage(named: "Flying"), UIImage(named: "Ghost"), UIImage(named: "Grass"), UIImage(named: "Ground"), UIImage(named: "Ice"), UIImage(named: "Normal"), UIImage(named: "Poison"), UIImage(named: "Psychic"), UIImage(named: "Rock"), UIImage(named: "Steel"), UIImage(named: "Water")]
         //[#imageLiteral(resourceName: "Bug"), #imageLiteral(resourceName: "Dark"), #imageLiteral(resourceName: "Dragon"), #imageLiteral(resourceName: "Electric"), #imageLiteral(resourceName: "Fairy"), #imageLiteral(resourceName: "Fighting"), #imageLiteral(resourceName: "Fire"), #imageLiteral(resourceName: "Flying"), #imageLiteral(resourceName: "Ghost"), #imageLiteral(resourceName: "Grass"), #imageLiteral(resourceName: "Ground"), #imageLiteral(resourceName: "Ice"), #imageLiteral(resourceName: "Normal"), #imageLiteral(resourceName: "Poison"), #imageLiteral(resourceName: "Psychic"), #imageLiteral(resourceName: "Rock"), #imageLiteral(resourceName: "Steel"), #imageLiteral(resourceName: "Water")]
     func setUI() {
@@ -112,6 +113,13 @@ class ViewController: UIViewController {
         searchByCategoriesButton.layer.cornerRadius = 3
         searchByCategoriesButton.addTarget(self, action: #selector(categoriesHooHah), for: .touchUpInside)
         view.addSubview(searchByCategoriesButton)
+        
+        searchByTypesButton = UIButton(frame: CGRect(x: (view.frame.width / 2) - (searchBar.frame.width * 0.15), y: 240 + (view.frame.height * 0.2) + (searchBar.frame.height * 0.075), width: searchBar.frame.width * 0.3, height: searchBar.frame.height * 0.85))
+        searchByTypesButton.setTitle("Hoo hah!", for: .normal)
+        searchByTypesButton.backgroundColor = UIColor.red
+        searchByTypesButton.layer.cornerRadius = 3
+        searchByTypesButton.addTarget(self, action: #selector(typesHooHah), for: .touchUpInside)
+        view.addSubview(searchByTypesButton)
         
         
         pressed = UIButton()
@@ -240,6 +248,25 @@ class ViewController: UIViewController {
         performSegue(withIdentifier: "toPokemonDetails", sender: self)
     }
     
+    func typesHooHah() {
+        for type in selectedTypesNames {
+            for p in pokemon {
+                for psType in p.types {
+                    if type.contains(psType) {
+                        searchedPokemon.append(p)
+                        break;
+                    }
+                }
+            }
+        }
+        if searchedPokemon.count == 0 {
+            noPokemonToBeSearched = true
+        } else {
+            noPokemonToBeSearched = false
+        }
+        performSegue(withIdentifier: "toPokemonDetails", sender: self)
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let next = segue.destination as! CollectionViewController
         next.searchedPokemon = searchedPokemon
@@ -293,7 +320,15 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(indexPath.row)
+        let cell = collectionView.cellForItem(at: indexPath) as? PokemonTypeCollectionViewCell
+        if cell?.backgroundColor == UIColor.black {
+            cell?.backgroundColor = UIColor(red: 222/255, green: 222/255, blue: 222/255, alpha: 1)
+            let rem = pokemonTypeNames[indexPath.row]
+            selectedTypesNames = selectedTypesNames.filter { $0 != rem }
+        } else {
+            cell?.backgroundColor = UIColor.black
+            selectedTypesNames.append(pokemonTypeNames[indexPath.row])
+        }
     }
+    
 }
-
